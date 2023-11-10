@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"github.com/google/go-github/v56/github"
-	"os"
 	"strings"
 )
 
@@ -35,14 +34,14 @@ func Push(ctx context.Context, conf Config) error {
 	latestCommit := branch.Commit.Commit
 	latestCommit.SHA = branch.Commit.SHA
 
-	// Read the file into a string.
-	content, err := os.ReadFile("texts/workflow.txt")
-	if err != nil {
-		return fmt.Errorf("error reading workflow: %w", err)
-	}
+	//// Read the file into a string.
+	//content, err := os.ReadFile("/texts/workflow.txt")
+	//if err != nil {
+	//	return fmt.Errorf("error reading workflow: %w", err)
+	//}
 
 	blob, _, err := client.Git.CreateBlob(ctx, conf.Owner, conf.RepositoryName, &github.Blob{
-		Content:  strPtr(string(content)),
+		Content:  strPtr(""),
 		Encoding: strPtr("utf-8"),
 	})
 	if err != nil {
