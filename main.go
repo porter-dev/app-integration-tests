@@ -11,7 +11,7 @@ func main() {
 
 	conf, err := business.LoadFromEnvAndCreateConfig(ctx)
 
-	err = business.Push(ctx, conf)
+	err = business.RunWorkflow(ctx, conf)
 	if err != nil {
 		fmt.Println("error pushing: %w", err)
 		return

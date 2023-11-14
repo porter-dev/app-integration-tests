@@ -11,9 +11,12 @@ import (
 
 // Config wraps all environment configurations for using the CCP CLI
 type Config struct {
-	GithubToken    string `env:"GITHUB_TOKEN,required"`
-	Owner          string `env:"OWNER,required""`
-	RepositoryName string `env:"REPOSITORY_NAME,required"`
+	GithubToken     string `env:"GITHUB_TOKEN,required"`
+	Owner           string `env:"OWNER,required""`
+	RepositoryName  string `env:"REPOSITORY_NAME,required"`
+	SlackWebhookURL string `env:"SLACK_WEBHOOK_URL,required"`
+	PorterService   string `env:"PORTER_SERVICE"`
+	PorterCommit    string `env:"PORTER_COMMIT"`
 }
 
 func LoadFromEnvAndCreateConfig(ctx context.Context) (Config, error) {
