@@ -191,8 +191,6 @@ const slackTemplate = `
 %s CLI run completed with status: *%s* %s
 
 App: *%s*
-
-Triggered by commit: github.com/porter-dev/%s/commit/%s
 `
 
 const supportHeroGroupID = "S05LXJ5DU9L"
