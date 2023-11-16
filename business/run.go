@@ -210,7 +210,7 @@ func populateSlackMessage(inp populateSlackMessageInput) string {
 	var statusEmoji string
 	switch inp.Status {
 	case "success":
-		statusEmoji = ":party_parrot:"
+		statusEmoji = ":party-parrot:"
 		notifySupportHero = false
 	case "failure":
 		statusEmoji = ":scream_cat:"
