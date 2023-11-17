@@ -224,9 +224,6 @@ func populateSlackMessage(inp populateSlackMessageInput) string {
 		inp.Status,
 		statusEmoji,
 		inp.GithubRepository,
-		inp.PorterService,
-		inp.PorterService,
-		inp.CommitSHA,
 	)
 
 	if notifySupportHero {
