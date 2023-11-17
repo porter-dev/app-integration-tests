@@ -187,11 +187,7 @@ type sendSlackNotificationInput struct {
 	CommitSHA        string
 }
 
-const slackTemplate = `
-%s CLI run completed with status: *%s* %s
-
-App: *%s*
-`
+const slackTemplate = `%s %s: *%s* %s`
 
 const supportHeroGroupID = "S05LXJ5DU9L"
 
@@ -221,9 +217,9 @@ func populateSlackMessage(inp populateSlackMessageInput) string {
 	message := fmt.Sprintf(
 		slackTemplate,
 		statusEmoji,
+		inp.GithubRepository,
 		inp.Status,
 		statusEmoji,
-		inp.GithubRepository,
 	)
 
 	if notifySupportHero {
