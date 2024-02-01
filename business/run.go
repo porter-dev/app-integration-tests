@@ -33,7 +33,7 @@ func RunWorkflow(ctx context.Context, conf Config) error {
 			GithubOwner:      conf.Owner,
 			GithubRepository: conf.RepositoryName,
 			GithubToken:      conf.GithubToken,
-			Timeout:          5 * time.Minute,
+			Timeout:          10 * time.Minute,
 			GithubClient:     client,
 			WorkflowID:       workflowID,
 		})
