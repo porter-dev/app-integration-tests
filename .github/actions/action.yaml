@@ -1,0 +1,33 @@
+name: 'Run integration test'
+description: 'Runs integration test for the specified test file, repository, and porter cluster.'
+
+inputs:
+  yaml_file:
+    description: 'The path to the integration test file.'
+    required: true
+  cluster:
+    description: 'Porter cluster ID.'
+    required: true
+  host:
+    description: 'Porter host URL.'
+    required: true
+  project:
+    description: 'Porter project ID.'
+    required: true
+  token:
+    description: 'Porter token for authentication.'
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Setup porter
+      uses: porter-dev/setup-porter@v0.1.0
+    - name: Run apply
+      shell: bash
+      run: exec porter apply -f ${{ inputs.yaml_file }} --wait
+      env:
+        PORTER_HOST: ${{ inputs.host }}
+        PORTER_PROJECT: ${{ inputs.project }}
+        PORTER_CLUSTER: ${{ inputs.cluster }}
+        PORTER_TOKEN: ${{ inputs.token }}

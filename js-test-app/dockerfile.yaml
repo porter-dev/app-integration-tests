@@ -1,0 +1,13 @@
+version: v2
+name: js-test-app-dockerfile
+services:
+- name: web
+  run: node index.js
+  type: web
+  port: 3000
+build:
+  context: ./
+  method: docker
+  dockerfile: ./docker/Dockerfile
+predeploy:
+  run: ls

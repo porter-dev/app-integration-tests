@@ -1,0 +1,246 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0, width=device-width"/>
+  <title>Tetr.js</title>
+  <link rel="stylesheet" href="style.css">
+  <!--<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-554c83a8661bf358" async="async"></script>-->
+</head>
+<body>
+<!--<canvas id="bg"></canvas>-->
+<!--<video id="bg" src=bg.webm loop autoplay></video>-->
+
+<div class="touchbutton" id="touchLeft" style="display:none"><i class="material-icons">&#xE5C4;</i></div>
+<div class="touchbutton" id="touchRight" style="display:none"><i class="material-icons">&#xE5C8;</i></div>
+<div class="touchbutton" id="touchDown" style="display:none"><i class="material-icons">&#xE906;</i></div>
+<div class="touchbutton" id="touchDrop" style="display:none"><i class="material-icons">&#xE2C4;</i></div>
+<div class="touchbutton" id="touchHold" style="display:none"><i class="material-icons">&#xE8D4;</i></div>
+<div class="touchbutton" id="touchRotRight" style="display:none"><i class="material-icons">&#xE15A;</i></div>
+<div class="touchbutton" id="touchRotLeft" style="display:none"><i class="material-icons">&#xE166;</i></div>
+<div class="touchbutton" id="touchRot180" style="display:none"><i class="material-icons">&#xE5D5;</i></div>
+<div class="touchbutton" id="touchLayout" style="display:none"><i class="material-icons">&#xE913;</i></div>
+
+<div id="content">
+
+  <!-- Canvases -->
+  <div id="d">
+    <h3>Hold</h3>
+
+    <div id="a">
+      <canvas id="hold"></canvas>
+      <br/>
+
+      <div id="divInp"></div>
+    </div>
+
+    <table id="stats">
+      <tr>
+        <th id="score">0</th>
+        <th>Score</th>
+      </tr>
+      <tr>
+        <td id="levelline"><div id="level"></div><div id="line">0</div></td>
+        <th>Line</th>
+      </tr>
+      <tr>
+        <td id="piece">0</td>
+        <th>Piece</th>
+      </tr>
+      <tr>
+        <th id="time"><canvas></canvas></th>
+      </tr>
+    </table>
+  </div>
+
+  <div id="b">
+    <canvas id="bgStack"></canvas>
+    <canvas id="stack">You need an up-to-date web browser to play this game.</canvas>
+    <canvas id="active"></canvas>
+
+    <div id="msgdiv">
+      <span id="msg"></span>
+    </div>
+
+    <nav class="menu on">
+      <h1>Porter Tetr.js - v0.01</h1>
+
+      <p>
+        Mod by JSR
+      </p>
+
+      <div class="btn-container">
+        <a class="btn" onclick="init(0)"><i class="material-icons">&#xE3E7;</i> Sprint 40</a>
+        <a class="btn" onclick="init(1)"><i class="material-icons">&#xE153;</i> Marathon</a>
+        <!-- <a class="btn" onclick="init(2)">Play Ultra</a> -->
+        <a class="btn" onclick="init(3,{digOffset:0})"><i class="material-icons">&#xE800;</i> Dig!</a>
+        <a class="btn" onclick="init(4,{digraceType:'easy'})"><i class="material-icons">&#xE91D;</i> Dig Race</a>
+        <a class="btn" onclick="init(5)"><i class="material-icons">&#xE2C3;</i> Zen</a>
+
+        <a class="btn" onclick="menu(2)" id="btnbinds"><i class="material-icons">&#xE021;</i> Controls</a>
+        <a class="btn" onclick="menu(1)"><i class="material-icons">&#xE869;</i> Settings</a>
+        <a class="btn" onclick="menu(6,1)"><i class="material-icons">&#xE04A;</i> Replay</a>
+        <a class="btn highlight" onclick="menu(7,1);this.classList.remove('highlight')"><i class="material-icons">&#xE8E5;</i> Harder</a>
+      </div>
+    </nav>
+
+    <div class="menu">
+      <h2>Settings</h2>
+
+      <div id="settings">
+      </div>
+      <div style="clear:both"><a class="btn" onclick="menu(0)">Done</a></div>
+    </div>
+
+    <div class="menu">
+      <h2>Controls</h2>
+
+      <p>Click on the item you want to change, then press any key.</p>
+      <table id="controls">
+        <tr>
+          <th>Move <i class="material-icons">&#xE5C4;</i></th>
+          <td id="moveLeft">←</td>
+        </tr>
+        <tr>
+          <th>Move <i class="material-icons">&#xE5C8;</i></th>
+          <td id="moveRight">→</td>
+        </tr>
+        <tr>
+          <th>Triple <i class="material-icons">&#xE5C4;</i></th>
+          <td id="moveLeft3">---</td>
+        </tr>
+        <tr>
+          <th>Triple <i class="material-icons">&#xE5C8;</i></th>
+          <td id="moveRight3">---</td>
+        </tr>
+        <tr>
+          <th>Move <i class="material-icons">&#xE906;</i></th>
+          <td id="moveDown">↓</td>
+        </tr>
+        <tr>
+          <th>Drop <i class="material-icons">&#xE2C4;</i></th>
+          <td id="hardDrop">Space</td>
+        </tr>
+        <tr>
+          <th>Hold <i class="material-icons">&#xE8D4;</i></th>
+          <td id="holdPiece">C</td>
+        </tr>
+        <tr>
+          <th>Spin <i class="material-icons">&#xE15A;</i></th>
+          <td id="rotRight">X</td>
+        </tr>
+        <tr>
+          <th>Spin <i class="material-icons">&#xE166;</i></th>
+          <td id="rotLeft">Z</td>
+        </tr>
+        <tr>
+          <th>Spin <i class="material-icons">&#xE5D5;</i></th>
+          <td id="rot180">Shift</td>
+        </tr>
+        <tr>
+          <th>Retry <i class="material-icons">&#xE040;</i></th>
+          <td id="retry">R</td>
+        </tr>
+        <tr>
+          <th>Pause <i class="material-icons">&#xE034;</i></th>
+          <td id="pause">Esc</td>
+        </tr>
+      </table>
+      <a class="btn btn-bottom" onclick="menu(0);document.getElementById('btnbinds').classList.remove('highlight');">Done</a>
+    </div>
+
+    <nav id="go" class="menu">
+      <div class="btn-container btn-container-bottom">
+        <a class="btn" onclick="init(gametype,gameparams)">Retry</a>
+        <div class="btn-line">
+          <a class="btn btn-inline" onclick="init('replay')" style="width: 50%;">Replay</a>
+          <a class="btn btn-inline" onclick="showreplaydata(curreplaydata())" style="width: 20%"><i class="material-icons">&#xE161;</i></a>
+        </div>
+        <a class="btn highlight" onclick="menu(5,1);this.classList.remove('highlight')">Rankings</a>
+        <a class="btn" onclick="menu(0)">Back</a>
+      </div>
+    </nav>
+
+    <nav id="pause" class="menu">
+      <div class="btn-container btn-container-bottom">
+        <a class="btn" onclick="unpause()">Return</a>
+        <a class="btn" onclick="init(gametype,gameparams)">Retry</a>
+        <a class="btn" onclick="menu(0)">Back</a>
+      </div>
+    </nav>
+
+    <div id="leader" class="menu">
+      <h2>Rankings</h2>
+
+      <div id="leaderboard"></div>
+      <div style="clear:both"><a class="btn" onclick="menu(void 0,-1)">Back</a></div>
+    </div>
+
+    <nav id="replay" class="menu">
+      <h2>Replay</h2>
+
+      <p>Ctrl+C / Ctrl+V</p>
+      <textarea id="replaydata" spellcheck="false"></textarea>
+      <ul>
+        <li><a class="btn" onclick="tryreplaydata()">Watch</a></li>
+        <li><a class="btn" onclick="menu(void 0,-1)">Back</a></li>
+      </ul>
+    </nav>
+
+    <nav class="menu">
+      <h1>Tetr.js - Dig</h1>
+      <p>deep♂dark♂fantasy<br />
+        when shit happens, hit Ctrl+F5.</p>
+      <div class="btn-container">
+        <a class="btn" onclick="init(1,{marathonType:1})">Classic-Fast</a>
+        <a class="btn" onclick="init(3,{digOffset:500})"><i class="material-icons">&#xE3A8;</i> Dig - 500+</a>
+        <a class="btn" onclick="init(3,{digOffset:1000})"><i class="material-icons">&#xE3A7;</i> Dig - 1000+</a>
+        <a class="btn" onclick="init(3,{digOffset:1500})"><i class="material-icons">&#xE3A6;</i> Dig - 1500+</a>
+        <a class="btn" onclick="init(3,{digOffset:2000})"><i class="material-icons">&#xE3E4;</i> NUKE</a>
+        <a class="btn" onclick="init(4,{digraceType:'checker'})"><i class="material-icons">&#xE540;</i> Dig Hard</a>
+        <a class="btn" onclick="init(6)"><i class="material-icons">&#xE01F;</i> 20G</a>
+        <a class="btn" onclick="init(7)"><i class="material-icons">&#xE034;</i> Dig Zen</a>
+        <div class="btn-line">
+          <a class="btn btn-inline" style="width:15%;" onclick="init(0,{lineLimit:1})">1</a>
+          <a class="btn btn-inline" style="width:15%;" onclick="init(0,{lineLimit:4})">4</a>
+          <a class="btn btn-inline" style="width:35%;" onclick="init(0,{lineLimit:25})">TYPE-B</a>
+        </div>
+        <div class="btn-line">
+          <a class="btn btn-inline" style="width:30%;" onclick="init(0,{lineLimit:100})">100</a>
+          <a class="btn btn-inline" style="width:40%;" onclick="init(0,{lineLimit:1000})">1000</a>
+        </div>
+        <a class="btn" onclick="init(0,{pieceSet:1})"><i class="material-icons"></i> Spr_nt</a>
+        <a class="btn" onclick="init(0,{pieceSet:2})"><i class="material-icons"></i> Heaven</a>
+        <a class="btn" onclick="init(0,{backFire:1})"><i class="material-icons"></i> Backfire</a>
+        <a class="btn" onclick="init(0,{backFire:2})"><i class="material-icons"></i> Backfire2</a>
+        <a class="btn" onclick="init(0,{backFire:3})"><i class="material-icons"></i> Backfire3</a>
+        <a class="btn" onclick="menu(void 0,-1)">Back</a>
+      </div>
+    </nav>
+
+  </div>
+
+  <div id="c">
+    <h3>Next</h3>
+    <canvas id="preview"></canvas>
+  </div>
+
+</div>
+
+<canvas id="sprite"></canvas>
+<script type="text/javascript" src="bigmin.js"></script>
+<script type="text/javascript" src="tetris.js"></script>
+<script type="text/javascript" src="piece.js"></script>
+<script type="text/javascript" src="stack.js"></script>
+<script type="text/javascript" src="hold.js"></script>
+<script type="text/javascript" src="preview.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript" src="bg.js"></script>
+<script type="text/javascript" src="ranking.js"></script>
+<script type="text/javascript" src="compress.js"></script>
+<script type="text/javascript" src="sound.js"></script>
+<script type="text/javascript" src="touch.js"></script>
+
+</body>
+</html>

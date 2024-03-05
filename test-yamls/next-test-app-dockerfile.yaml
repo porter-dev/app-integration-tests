@@ -1,0 +1,10 @@
+version: v2
+services:
+  - name: web
+    port: 3000
+predeploy:
+  run: ls
+build:
+  context: ./next-test-app
+  method: docker
+  dockerfile: ./Dockerfile

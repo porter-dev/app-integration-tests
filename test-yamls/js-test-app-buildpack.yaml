@@ -1,0 +1,15 @@
+version: v2
+name: js-test-app-buildpack
+services:
+- name: web
+  run: node index.js
+  type: web
+  port: 3000
+build:
+  context: ./js-test-app
+  method: pack
+  builder: heroku/buildpacks:20
+  buildpacks:
+  - heroku/nodejs
+predeploy:
+  run: ls
