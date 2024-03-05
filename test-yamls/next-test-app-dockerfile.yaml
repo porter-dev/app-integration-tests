@@ -8,4 +8,4 @@ predeploy:
 build:
   context: ./next-test-app
   method: docker
-  dockerfile: Dockerfile
+  dockerfile: ./next-test-app/Dockerfile
