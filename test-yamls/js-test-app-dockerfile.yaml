@@ -8,6 +8,6 @@ services:
 build:
   context: ./js-test-app
   method: docker
-  dockerfile: ./docker/Dockerfile
+  dockerfile: ./Dockerfile
 predeploy:
   run: ls

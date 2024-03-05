@@ -21,8 +21,6 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Setup porter
-      uses: porter-dev/setup-porter@v0.1.0
     - name: Run apply
       shell: bash
       run: exec porter apply -f ${{ inputs.yaml_file }} --wait
