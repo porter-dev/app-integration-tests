@@ -25,7 +25,7 @@ runs:
       uses: porter-dev/setup-porter@v0.1.0
     - name: Run apply
       shell: bash
-      run: exec porter apply -f ${{ inputs.yaml_file }} --wait
+      run: exec porter app apply -f ${{ inputs.yaml_file }} --wait
       env:
         PORTER_HOST: ${{ inputs.host }}
         PORTER_PROJECT: ${{ inputs.project }}

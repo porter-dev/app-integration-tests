@@ -10,6 +10,6 @@ RUN npm install
 ENV NODE_ENV=development
 ARG SPONSOR
 
-#COPY . ./
+COPY . ./
 
 CMD node index.js
