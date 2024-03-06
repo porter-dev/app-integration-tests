@@ -1,10 +1,9 @@
 version: v2
-name: nginx-latest
 services:
-  - name: web
-    run: ""
-    type: web
-    port: 80
+- name: web
+  run: ""
+  type: web
+  port: 80
 image:
   repository: nginx
   tag: latest

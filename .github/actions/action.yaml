@@ -17,6 +17,9 @@ inputs:
   token:
     description: 'Porter token for authentication.'
     required: true
+  app_name:
+    description: 'Porter app name.'
+    required: true
 
 runs:
   using: composite
@@ -31,3 +34,4 @@ runs:
         PORTER_PROJECT: ${{ inputs.project }}
         PORTER_CLUSTER: ${{ inputs.cluster }}
         PORTER_TOKEN: ${{ inputs.token }}
+        PORTER_APP_NAME: ${{ inputs.app_name }}
