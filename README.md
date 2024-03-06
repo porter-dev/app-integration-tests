@@ -1,6 +1,3 @@
 # app-integration-tests
 
-Permissions needed for Github API:
-- Workflows (Read & Write)
-- Contents (Read & Write)
-- Actions (Read & Write)
+Central location for test apps and test `porter.yaml` files.
