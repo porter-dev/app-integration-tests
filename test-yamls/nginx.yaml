@@ -4,6 +4,8 @@ services:
   run: ""
   type: web
   port: 80
+  cpuCores: 0.05
+  ramMegabytes: 50
 image:
   repository: nginx
   tag: latest
