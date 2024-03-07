@@ -20,7 +20,7 @@ jobs:
         uses: porter-dev/setup-porter@v0.1.0
       - name: Pull unauthenticated images
         run: |
-          echo $GITHUB_TOKEN | docker login ghcr.io -u USERNAME --password-stdin
+          echo $GITHUB_TOKEN | docker login ghcr.io -u portersupport --password-stdin
           docker pull ghcr.io/porter-dev/cluster-control-plane/ccp-cli:latest
         env:
           GITHUB_TOKEN: ${{ secrets.IMAGE_BUILD_TOKEN }}
