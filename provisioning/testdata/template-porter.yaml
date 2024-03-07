@@ -1,0 +1,10 @@
+version: v2
+name: integration-test-provisioning
+env:
+  cluster_id: $CLUSTER_ID
+  project_id: $PROJECT_ID
+  next_instance_type: $NEXT_INSTANCE_TYPE
+  current_instance_type: $CURRENT_INSTANCE_TYPE
+services:
+  - name: cluster-update
+    type: job
