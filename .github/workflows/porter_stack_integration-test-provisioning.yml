@@ -25,3 +25,4 @@ jobs:
           PORTER_STACK_NAME: integration-test-provisioning
           PORTER_TAG: ${{ steps.vars.outputs.sha_short }}
           PORTER_TOKEN: ${{ secrets.PORTER_STACK_8_11 }}
+          GITHUB_TOKEN: ${{ secrets.IMAGE_BUILD_TOKEN }}
