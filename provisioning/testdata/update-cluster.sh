@@ -32,9 +32,13 @@ then
 else 
     contractname=cluster-basic-with-id.json
     envsubst < cluster-basic-with-id-template.json > apply-contract.json
-    NEXT_TYPE=$CURRENT_INSTANCE_TYPE
-    CURRENT_TYPE=$NEXT_INSTANCE_TYPE
-    envsubst < template-porter.yaml > porter.yaml
 fi
 
-ccp-cli contract update -f $contractname -o json | jq
+clusterid=$(ccp-cli contract update -f apply-contract.json -o json | jq '.ClusterId')
+echo "Cluster ID: $clusterid"
+
+NEXT_TYPE=$CURRENT_INSTANCE_TYPE
+CURRENT_TYPE=$NEXT_INSTANCE_TYPE
+CLUSTER_ID=$clusterid
+envsubst < template-porter.yaml > porter.yaml
+porter apply -f porter.yaml
