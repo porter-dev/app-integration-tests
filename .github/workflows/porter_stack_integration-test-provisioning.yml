@@ -6,6 +6,10 @@ name: Deploy to integration-test-provisioning
 jobs:
   porter-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
