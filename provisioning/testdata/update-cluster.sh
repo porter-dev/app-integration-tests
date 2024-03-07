@@ -1,4 +1,5 @@
-# Create/update cluster using environment variables
+#! /bin/bash
+
 contractname=cluster-basic-no-id.json
 
 if [ -z "$PROJECT_ID" ]; 

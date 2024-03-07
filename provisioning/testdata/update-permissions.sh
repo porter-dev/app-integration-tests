@@ -1,3 +1,5 @@
+#! /bin/bash
+
 if [ -z "$PROJECT_ID" ]; 
 then 
     echo "Project ID is not set"
