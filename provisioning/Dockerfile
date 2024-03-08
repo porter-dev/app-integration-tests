@@ -5,7 +5,7 @@ RUN apt update
 RUN apt install -y software-properties-common
 RUN apt update 
 RUN add-apt-repository -y ppa:rmescandon/yq 
-RUN apt install -y gettext-base yq
+RUN apt install -y gettext-base yq jq
 
 COPY --from=porter-cli /usr/local/bin/porter /usr/local/bin/porter
 

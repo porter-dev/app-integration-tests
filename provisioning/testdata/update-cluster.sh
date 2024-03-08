@@ -39,7 +39,8 @@ else
     envsubst < cluster-basic-with-id-template.json > apply-contract.json
 fi
 
-clusterid=$(ccp-cli manage contract update -f apply-contract.json -o json | jq '.ClusterId')
+clusterid=$(ccp-cli manage contract update -f apply-contract.json -o json | jq '.cluster_id')
+echo "Cluster ID: $clusterid"
 
 NEXT_TYPE=$CURRENT_INSTANCE_TYPE
 CURRENT_TYPE=$NEXT_INSTANCE_TYPE
