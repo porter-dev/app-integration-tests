@@ -1,8 +1,6 @@
 #! /bin/bash
 set -euo pipefail
 
-contractname=cluster-basic-no-id.json
-
 if [ -z "$PROJECT_ID" ]; 
 then 
     echo "Project ID is not set"
@@ -31,22 +29,12 @@ then
 fi
 echo "Next instance type: $NEXT_INSTANCE_TYPE"
 
-if [ $CLUSTER_ID = 0 ]; 
-then 
-    contractname=cluster-basic-no-id.json
-    envsubst < cluster-basic-no-id-template.json > apply-contract.json
-else 
-    contractname=cluster-basic-with-id.json
-    envsubst < cluster-basic-with-id-template.json > apply-contract.json
-fi
-
-echo "Applying contract to cluster"
-clusterid=$(ccp-cli manage contract update -f apply-contract.json -o json | jq '.cluster_id')
-echo "Cluster ID: $clusterid"
+echo "Deleting cluster"
+ccp-cli manage contract delete --project-id $PROJECT_ID --cluster-id $CLUSTER_ID
 
 NEXT_TYPE=$CURRENT_INSTANCE_TYPE
 CURRENT_TYPE=$NEXT_INSTANCE_TYPE
-CLUSTER_ID=$clusterid
+CLUSTER_ID=0
 
 echo "Updating values in Porter"
 
