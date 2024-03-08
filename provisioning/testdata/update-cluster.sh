@@ -40,7 +40,7 @@ else
     envsubst < cluster-basic-with-id-template.json > apply-contract.json
 fi
 
-echo "Applying contract to cluster"
+echo "Applying contract to cluster. If this returns an error, another integration test may be in progress. Please wait a few minutes and try again."
 clusterid=$(ccp-cli manage contract update -f apply-contract.json -o json | jq '.cluster_id')
 echo "Cluster ID: $clusterid"
 
