@@ -3,7 +3,7 @@
     "cloudProvider": "ENUM_CLOUD_PROVIDER_AWS",
     "cloudProviderCredentialsId": "arn:aws:iam::026281491146:role/porter-manager",
     "eksKind": {
-      "clusterName": "stefan-test",
+      "clusterName": "integration-test",
       "clusterVersion": "v1.27.0",
       "loadBalancer": {},
       "logging": {},
