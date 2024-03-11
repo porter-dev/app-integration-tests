@@ -48,6 +48,10 @@ NEXT_TYPE=$CURRENT_INSTANCE_TYPE
 CURRENT_TYPE=$NEXT_INSTANCE_TYPE
 CLUSTER_ID=$clusterid
 
+export NEXT_INSTANCE_TYPE=$NEXT_TYPE
+export CURRENT_INSTANCE_TYPE=$CURRENT_TYPE
+export CLUSTER_ID=$CLUSTER_ID
+
 echo "Updating values in Porter"
 
 envsubst < template-porter.yaml > porter.yaml
