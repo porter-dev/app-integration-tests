@@ -1,7 +1,7 @@
 {
   "cluster": {
     "cloudProvider": "ENUM_CLOUD_PROVIDER_AWS",
-    "cloudProviderCredentialsId": "arn:aws:iam::026281491146:role/porter-manager",
+    "cloudProviderCredentialsId": "arn:aws:iam::081277119371:role/porter-manager",
     "eksKind": {
       "clusterName": "integration-test",
       "clusterVersion": "v1.27.0",
