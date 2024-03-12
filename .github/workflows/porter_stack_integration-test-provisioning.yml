@@ -1,8 +1,8 @@
-"on":
+name: Deploy to integration-test-provisioning
+on:
   push:
     branches:
-      - sms/intgtests
-name: Deploy to integration-test-provisioning
+      - main
 jobs:
   porter-deploy:
     runs-on: ubuntu-latest
