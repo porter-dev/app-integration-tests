@@ -1,13 +1,16 @@
 version: v2
-name: js-test-app-dockerfile
 services:
 - name: web
   run: node index.js
   type: web
   port: 3000
+  cpuCores: 0.05
+  ramMegabytes: 50
+predeploy:
+  run: ls
+  cpuCores: 0.05
+  ramMegabytes: 50
 build:
   context: ./js-test-app
   method: docker
-  dockerfile: Dockerfile
-predeploy:
-  run: ls
+  dockerfile: ./js-test-app/Dockerfile

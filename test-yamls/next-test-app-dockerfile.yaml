@@ -1,11 +1,14 @@
 version: v2
-name: next-test-app-dockerfile
 services:
-  - name: web
-    port: 3000
+- name: web
+  port: 3000
+  cpuCores: 0.05
+  ramMegabytes: 50
 predeploy:
   run: ls
+  cpuCores: 0.05
+  ramMegabytes: 50
 build:
   context: ./next-test-app
   method: docker
-  dockerfile: Dockerfile
+  dockerfile: ./next-test-app/Dockerfile
