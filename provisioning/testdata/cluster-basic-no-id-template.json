@@ -1,0 +1,41 @@
+{
+  "cluster": {
+    "cloudProvider": "ENUM_CLOUD_PROVIDER_AWS",
+    "cloudProviderCredentialsId": "arn:aws:iam::081277119371:role/porter-manager",
+    "eksKind": {
+      "clusterName": "integration-test",
+      "clusterVersion": "v1.27.0",
+      "loadBalancer": {},
+      "logging": {},
+      "network": {
+        "serviceCidr": "172.20.0.0/16",
+        "vpcCidr": "10.78.0.0/16"
+      },
+      "nodeGroups": [
+        {
+          "instanceType": "t3.medium",
+          "maxInstances": 5,
+          "minInstances": 1,
+          "nodeGroupType": "NODE_GROUP_TYPE_SYSTEM"
+        },
+        {
+          "instanceType": "t3.large",
+          "isStateful": true,
+          "maxInstances": 5,
+          "minInstances": 1,
+          "nodeGroupType": "NODE_GROUP_TYPE_MONITORING"
+        },
+        {
+          "instanceType": "t3.medium",
+          "maxInstances": 10,
+          "minInstances": 1,
+          "nodeGroupType": "NODE_GROUP_TYPE_APPLICATION"
+        }
+      ],
+      "region": "us-east-1"
+    },
+    "kind": "ENUM_KUBERNETES_KIND_EKS",
+    "projectId": $PROJECT_ID
+  },
+  "complianceProfiles": {}
+}
