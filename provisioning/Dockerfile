@@ -1,4 +1,4 @@
-FROM ghcr.io/porter-dev/porter/porter-cli:latest as porter-cli
+FROM ghcr.io/porter-dev/releases/porter-cli:latest as porter-cli
 FROM ghcr.io/porter-dev/cluster-control-plane/ccp-cli:latest as ccp-cli
 
 RUN apt update 
