@@ -14,9 +14,18 @@ jobs:
       run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
     - name: Setup porter
       uses: porter-dev/setup-porter@v0.1.0
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+      with:
+        driver-opts: image=moby/buildkit:latest
+      
+      
     - name: Deploy stack
       timeout-minutes: 30
-      run: exec porter apply 
+      run: |
+        docker buildx create --use
+        porter apply 
       env:
         PORTER_CLUSTER: "11"
         PORTER_DEPLOYMENT_TARGET_ID: b4d65cbc-45ec-43e1-9e44-d58cb5de3352
