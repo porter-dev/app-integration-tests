@@ -20,15 +20,15 @@ jobs:
       with:
         driver-opts: image=moby/buildkit:latest
         
-    - name: Build and push
-      uses: docker/build-push-action@v6
-      with:
-        context: .
-        push: true
-        tags: "813111008191.dkr.ecr.us-east-2.amazonaws.com/stefan-testcachemultistep:${{ steps.vars.outputs.sha_short }}"
-        cache-from: type=gha
-        cache-to: type=gha,mode=max      
-        file: DockerfileStefanTest
+    # - name: Build and push
+    #   uses: docker/build-push-action@v6
+    #   with:
+    #     context: .
+    #     push: true
+    #     tags: "813111008191.dkr.ecr.us-east-2.amazonaws.com/stefan-testcachemultistep:${{ steps.vars.outputs.sha_short }}"
+    #     cache-from: type=gha
+    #     cache-to: type=gha,mode=max      
+    #     file: DockerfileStefanTest
       
     - name: Deploy stack
       timeout-minutes: 30
@@ -48,5 +48,5 @@ jobs:
         
         DOCKER_BUILDKIT: "1"
         BUILDKIT_INLINE_CACHE: "1"
-        PORTER_BUILDKIT_ARGS: --cache-from type=gha --cache-to type=gha,mode=max
+        PORTER_BUILDKIT_ARGS: --cache-from type=gha --cache-to type=gha,mode=max --push
         
