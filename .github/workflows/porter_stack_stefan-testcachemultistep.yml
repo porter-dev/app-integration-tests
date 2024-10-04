@@ -28,6 +28,7 @@ jobs:
         tags: "813111008191.dkr.ecr.us-east-2.amazonaws.com/stefan-testcachemultistep:${{ steps.vars.outputs.sha_short }}"
         cache-from: type=gha
         cache-to: type=gha,mode=max      
+        file: DockerfileStefanTest
       
     - name: Deploy stack
       timeout-minutes: 30
