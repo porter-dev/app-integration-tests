@@ -30,4 +30,5 @@ jobs:
         
         DOCKER_BUILDKIT: "1"
         BUILDKIT_INLINE_CACHE: "1"
+        PORTER_BUILDKIT_ARGS: --cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,dest=/tmp/.buildx-cache-new,mode=max
         
