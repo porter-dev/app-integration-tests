@@ -27,3 +27,7 @@ jobs:
         PORTER_STACK_NAME: stefan-testcachemultistep
         PORTER_TAG: ${{ steps.vars.outputs.sha_short }}
         PORTER_TOKEN: ${{ secrets.PORTER_STACK_8_11 }}
+        
+        DOCKER_BUILDKIT: "1"
+        BUILDKIT_INLINE_CACHE: "1"
+        
