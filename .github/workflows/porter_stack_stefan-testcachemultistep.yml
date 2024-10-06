@@ -49,4 +49,5 @@ jobs:
         DOCKER_BUILDKIT: "1"
         BUILDKIT_INLINE_CACHE: "1"
         PORTER_BUILDKIT_ARGS: --cache-from type=gha --cache-to type=gha,mode=max --push
-        
+        PORTER_BUILDKIT_COMPLETE_OVERRIDE: buildx build -f DockerfileStefanTest --tag 813111008191.dkr.ecr.us-east-2.amazonaws.com/stefan-testcachemultistep:3449eb3a184ca759a4ce41a1b3044c85aa3870ee --cache-from type=registry,ref=813111008191.dkr.ecr.us-east-2.amazonaws.com/stefan-testcachemultistep:f6e348d4664ed922a9dc7e0ebf822757d4b65460 --cache-to type=registry,ref=813111008191.dkr.ecr.us-east-2.amazonaws.com/stefan-testcachemultistep:f6e348d4664ed922a9dc7e0ebf822757d4b65460,mode=max --build-arg PORTER_REPO_NAME=app-integration-tests --build-arg PORTER_STACK_NAME=stefan-testcachemultistep --build-arg PORTER_PROJECT=8 --build-arg PORTER_TOKEN=*** --build-arg PORTER_TAG=3449eb3 --build-arg PORTER_CLUSTER=11 --build-arg PORTER_HOST=https://dashboard.internal-tools.porter.run --build-arg PORTER_PR_NUMBER= --build-arg PORTER_DEPLOYMENT_TARGET_ID=b4d65cbc-45ec-43e1-9e44-d58cb5de3352 --platform linux/amd64 
+        # --cache-from type=gha --cache-to type=gha,mode=max --push
