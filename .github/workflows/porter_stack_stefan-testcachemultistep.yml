@@ -33,7 +33,7 @@ jobs:
     - name: Deploy stack
       timeout-minutes: 30
       run: |
-        docker buildx create --use --driver docker-container
+        docker buildx create --use --driver docker-container --bootstrap
         docker context ls
         docker buildx ls
         # docker buildx create --use
