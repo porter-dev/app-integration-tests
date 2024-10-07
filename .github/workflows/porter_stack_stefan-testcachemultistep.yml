@@ -33,7 +33,7 @@ jobs:
     - name: Deploy stack
       timeout-minutes: 30
       run: |
-        docker buildx create --use
+        # docker buildx create --use
         docker buildx build . -f=DockerfileStefanTest --tag=813111008191.dkr.ecr.us-east-2.amazonaws.com/stefan-testcachemultistep:3449eb3a184ca759a4ce41a1b3044c85aa3870ee --cache-from=type=gha --cache-to=type=gha,mode=max --platform=linux/amd64 --push
         # porter apply 
       env:
