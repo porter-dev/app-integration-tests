@@ -32,7 +32,7 @@ jobs:
       timeout-minutes: 30
       run: |
         docker context ls
-        docker buildx create --use
+        # docker buildx create --use
         porter apply 
       env:
         PORTER_CLUSTER: "11"
