@@ -34,8 +34,7 @@ jobs:
       timeout-minutes: 30
       run: |
         # docker buildx create --use
-        docker buildx build . -f=DockerfileStefanTest --tag=813111008191.dkr.ecr.us-east-2.amazonaws.com/stefan-testcachemultistep:3449eb3a184ca759a4ce41a1b3044c85aa3870ee --cache-from=type=gha --cache-to=type=gha,mode=max --platform=linux/amd64 --push
-        # porter apply 
+        porter apply 
       env:
         PORTER_CLUSTER: "11"
         PORTER_DEPLOYMENT_TARGET_ID: b4d65cbc-45ec-43e1-9e44-d58cb5de3352
@@ -51,5 +50,5 @@ jobs:
         BUILDKIT_INLINE_CACHE: "1"
         
         # PORTER_BUILDKIT_ARGS: 
-        # PORTER_BUILDKIT_COMPLETE_OVERRIDE: 
+        PORTER_BUILDKIT_COMPLETE_OVERRIDE: buildx build . -f=DockerfileStefanTest --tag=813111008191.dkr.ecr.us-east-2.amazonaws.com/stefan-testcachemultistep:3449eb3a184ca759a4ce41a1b3044c85aa3870ee --cache-from=type=gha --cache-to=type=gha,mode=max --platform=linux/amd64 --push
         # --cache-from type=gha --cache-to type=gha,mode=max --push
