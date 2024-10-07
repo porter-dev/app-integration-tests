@@ -49,5 +49,5 @@ jobs:
         DOCKER_BUILDKIT: "1"
         BUILDKIT_INLINE_CACHE: "1"
         # PORTER_BUILDKIT_ARGS: 
-        PORTER_BUILDKIT_COMPLETE_OVERRIDE: buildx build . -f=DockerfileStefanTest --tag=813111008191.dkr.ecr.us-east-2.amazonaws.com/stefan-testcachemultistep:3449eb3a184ca759a4ce41a1b3044c85aa3870ee --cache-from type=gha --cache-to type=gha,mode=max --push --platform=linux/amd64 
+        PORTER_BUILDKIT_COMPLETE_OVERRIDE: buildx build . -f=DockerfileStefanTest --tag=813111008191.dkr.ecr.us-east-2.amazonaws.com/stefan-testcachemultistep:3449eb3a184ca759a4ce41a1b3044c85aa3870ee --cache-from=type=gha --cache-to=type=gha,mode=max --push --platform=linux/amd64 
         # --cache-from type=gha --cache-to type=gha,mode=max --push
