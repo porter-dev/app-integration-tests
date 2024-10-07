@@ -33,7 +33,8 @@ jobs:
     - name: Deploy stack
       timeout-minutes: 30
       run: |
-        # docker buildx create --use
+        docker context ls
+        docker buildx create --use
         porter apply 
       env:
         PORTER_CLUSTER: "11"
