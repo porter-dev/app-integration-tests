@@ -15,10 +15,10 @@ jobs:
     - name: Setup porter
       uses: porter-dev/setup-porter@v0.1.0
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
-      with:
-        driver: docker-container
+    # - name: Set up Docker Buildx
+    #   uses: docker/setup-buildx-action@v3
+    #   with:
+    #     driver: docker-container
         
     # - name: Build and push
     #   uses: docker/build-push-action@v6
@@ -33,6 +33,7 @@ jobs:
     - name: Deploy stack
       timeout-minutes: 30
       run: |
+        docker buildx create --use --driver docker-container
         docker context ls
         docker buildx ls
         # docker buildx create --use
