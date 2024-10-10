@@ -36,6 +36,7 @@ jobs:
     - name: Deploy stack
       timeout-minutes: 30
       run: |
+        echo dockerconfig is: $DOCKER_CONFIG
         docker buildx create --use --driver docker-container --bootstrap --name porter-builder
         docker context ls
         docker buildx ls
