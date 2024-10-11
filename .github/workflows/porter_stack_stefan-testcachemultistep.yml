@@ -41,6 +41,7 @@ jobs:
         docker context ls
         docker buildx ls
         # docker buildx create --use
+        cat $DOCKER_CONFIG
         porter apply 
       env:
         PORTER_CLUSTER: "11"
