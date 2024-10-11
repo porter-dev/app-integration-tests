@@ -41,7 +41,8 @@ jobs:
         docker context ls
         docker buildx ls
         # docker buildx create --use
-        cat $DOCKER_CONFIG
+        ls $DOCKER_CONFIG
+        cat $DOCKER_CONFIG/config.json
         porter apply 
       env:
         PORTER_CLUSTER: "11"
@@ -53,7 +54,7 @@ jobs:
         PORTER_STACK_NAME: stefan-testcachemultistep
         PORTER_TAG: ${{ steps.vars2.outputs.sha_long }}
         PORTER_TOKEN: ${{ secrets.PORTER_STACK_8_11 }}
-        DOCKER_CONFIG: config.json
+        DOCKER_CONFIG: dockerconfigmanual
         
         DOCKER_BUILDKIT: "1"
         # BUILDKIT_INLINE_CACHE: "1"
