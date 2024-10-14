@@ -17,6 +17,20 @@ jobs:
       run: echo "sha_long=$(git log -1 --format=%H)" >> $GITHUB_OUTPUT
     - name: Setup porter
       uses: porter-dev/setup-porter@v0.1.0
+    - name: Test creds
+      shell: bash
+      env:
+        PORTER_CLUSTER: "11"
+        PORTER_DEPLOYMENT_TARGET_ID: b4d65cbc-45ec-43e1-9e44-d58cb5de3352
+        PORTER_HOST: https://dashboard.internal-tools.porter.run
+        PORTER_PR_NUMBER: ${{ github.event.number }}
+        PORTER_PROJECT: "8"
+        PORTER_REPO_NAME: ${{ github.event.repository.name }}
+        PORTER_STACK_NAME: stefan-testcachemultistep
+        PORTER_TAG: ${{ steps.vars2.outputs.sha_long }}
+        PORTER_TOKEN: ${{ secrets.PORTER_STACK_8_11 }}
+        GH_TOKEN: ${{ github.token }}
+      run: porter docker configure
 
     # - name: Set up Docker Buildx
     #   uses: docker/setup-buildx-action@v3
@@ -36,13 +50,13 @@ jobs:
     - name: Deploy stack
       timeout-minutes: 30
       run: |
-        echo dockerconfig is: $DOCKER_CONFIG
-        docker buildx create --use --driver docker-container --bootstrap --name porter-builder
-        docker context ls
-        docker buildx ls
+        #echo dockerconfig is: $DOCKER_CONFIG
+        #docker buildx create --use --driver docker-container --bootstrap --name porter-builder
+        #docker context ls
+        #docker buildx ls
         # docker buildx create --use
-        ls $DOCKER_CONFIG
-        cat $DOCKER_CONFIG/config.json
+        #ls $DOCKER_CONFIG
+        #cat $DOCKER_CONFIG/config.json
         porter apply 
       env:
         PORTER_CLUSTER: "11"
@@ -54,13 +68,13 @@ jobs:
         PORTER_STACK_NAME: stefan-testcachemultistep
         PORTER_TAG: ${{ steps.vars2.outputs.sha_long }}
         PORTER_TOKEN: ${{ secrets.PORTER_STACK_8_11 }}
-        DOCKER_CONFIG: dockerconfigmanual
+        #DOCKER_CONFIG: dockerconfigmanual
         GH_TOKEN: ${{ github.token }}
 
         
         DOCKER_BUILDKIT: "1"
         # BUILDKIT_INLINE_CACHE: "1"
-        BUILDKIT_NO_CLIENT_TOKEN: true
+        # BUILDKIT_NO_CLIENT_TOKEN: true
 
         # PORTER_BUILDKIT_COMPLETE_OVERRIDE: build -f DockerfileStefanTest --cache-to mode=max,image-manifest=true,oci-mediatypes=true,type=registry,ref=813111008191.dkr.ecr.us-east-2.amazonaws.com/stefan-testcachemultistep:${{ steps.vars2.outputs.sha_long }} --push --tag 813111008191.dkr.ecr.us-east-2.amazonaws.com/stefan-testcachemultistep:${{ steps.vars2.outputs.sha_long }} --cache-from type=registry,ref=813111008191.dkr.ecr.us-east-2.amazonaws.com/stefan-testcachemultistep .
-        PORTER_BUILDKIT_COMPLETE_OVERRIDE: buildx --builder porter-builder build -f DockerfileStefanTest . --cache-from type=gha --cache-to type=gha,mode=max --tag 813111008191.dkr.ecr.us-east-2.amazonaws.com/stefan-testcachemultistep:${{ steps.vars2.outputs.sha_long }} --push
+        # PORTER_BUILDKIT_COMPLETE_OVERRIDE: buildx --builder porter-builder build -f DockerfileStefanTest . --cache-from type=gha --cache-to type=gha,mode=max --tag 813111008191.dkr.ecr.us-east-2.amazonaws.com/stefan-testcachemultistep:${{ steps.vars2.outputs.sha_long }} --push
