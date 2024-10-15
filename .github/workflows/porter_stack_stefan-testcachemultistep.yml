@@ -17,6 +17,8 @@ jobs:
       run: echo "sha_long=$(git log -1 --format=%H)" >> $GITHUB_OUTPUT
     - name: Setup porter
       uses: porter-dev/setup-porter@v0.1.0
+      with:
+        tagged_release: 1231
     - name: Test creds
       shell: bash
       env:
@@ -42,7 +44,7 @@ jobs:
         # docker buildx create --use
         #ls $DOCKER_CONFIG
         #cat $DOCKER_CONFIG/config.json
-        porter apply 
+        porter apply --no-pull
       env:
         PORTER_CLUSTER: "11"
         PORTER_DEPLOYMENT_TARGET_ID: b4d65cbc-45ec-43e1-9e44-d58cb5de3352
@@ -53,7 +55,6 @@ jobs:
         PORTER_STACK_NAME: stefan-testcachemultistep
         PORTER_TAG: ${{ steps.vars2.outputs.sha_long }}
         PORTER_TOKEN: ${{ secrets.PORTER_STACK_8_11 }}
-        #DOCKER_CONFIG: dockerconfigmanual
         GH_TOKEN: ${{ github.token }}
 
         
