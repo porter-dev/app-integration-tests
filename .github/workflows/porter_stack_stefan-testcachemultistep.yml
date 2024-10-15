@@ -18,7 +18,7 @@ jobs:
     - name: Setup porter
       uses: porter-dev/setup-porter@v0.1.0
       with:
-        tagged_release: 1231
+        tagged_release: v0.56.1
         
     # - name: Test creds
     #   shell: bash
