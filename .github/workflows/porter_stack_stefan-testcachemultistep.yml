@@ -18,12 +18,12 @@ jobs:
     - name: Setup porter
       uses: porter-dev/setup-porter@v0.1.0
       with:
-        tagged_release: v0.56.3
+        tagged_release: v0.56.4
       
     - name: Deploy stack
       timeout-minutes: 30
       run: |
-        porter apply --no-pull
+        porter apply
       env:
         PORTER_CLUSTER: "11"
         PORTER_DEPLOYMENT_TARGET_ID: b4d65cbc-45ec-43e1-9e44-d58cb5de3352
