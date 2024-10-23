@@ -18,7 +18,7 @@ jobs:
     - name: Setup porter
       uses: porter-dev/setup-porter@v0.1.0
       with:
-        tagged_release: 0.56.3
+        tagged_release: v0.56.3
       
     - name: Deploy stack
       timeout-minutes: 30
