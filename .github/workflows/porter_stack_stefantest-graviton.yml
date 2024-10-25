@@ -36,3 +36,4 @@ jobs:
         PORTER_TOKEN: ${{ secrets.PORTER_STACK_8_11 }}
         GH_TOKEN: ${{ github.token }}
         DOCKER_BUILDKIT: 1
+        PORTER_BUILDKIT_ARGS: --platform linux/arm64
