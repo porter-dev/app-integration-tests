@@ -23,6 +23,8 @@ jobs:
     - name: Deploy stack
       timeout-minutes: 30
       run: |
+        porter version
+        echo "stefan" $OSTYPE; arch; uname -a
         porter apply
       env:
         PORTER_CLUSTER: "11"
