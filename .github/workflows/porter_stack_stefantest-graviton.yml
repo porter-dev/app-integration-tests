@@ -17,8 +17,6 @@ jobs:
       run: echo "sha_long=$(git log -1 --format=%H)" >> $GITHUB_OUTPUT
     - name: Setup porter
       uses: porter-dev/setup-porter@v0.1.0
-      with:
-        tagged_release: v0.56.4
       
     - name: Deploy stack
       timeout-minutes: 30
