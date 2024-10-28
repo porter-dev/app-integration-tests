@@ -3,6 +3,8 @@ WORKDIR /porter
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
 RUN go install github.com/go-delve/delve/cmd/dlv@latest
 RUN chmod +x /go/bin/dlv
+ARG STEFAN_ENV=dockerdefault
+RUN echo $STEFAN_ENV
 
 
 FROM debian:bullseye-slim as runner
