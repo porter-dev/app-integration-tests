@@ -1,7 +1,12 @@
 FROM golang:1.20.1 as installer
 WORKDIR /porter
 ARG STEFAN_ENV=dockerdefault
-RUN echo $STEFAN_ENV
+ENV SECOND_VAR ${STEFAN_ENV}
+ENV THIRD_VAR $STEFAN_ENV
+
+RUN echo "envs2" $STEFAN_ENV $SECOND_VAR 
+RUN echo "envs3" $STEFAN_ENV $THIRD_VAR
+
 
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
 RUN go install github.com/go-delve/delve/cmd/dlv@latest
