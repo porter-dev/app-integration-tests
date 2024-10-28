@@ -36,4 +36,5 @@ jobs:
         PORTER_TOKEN: ${{ secrets.PORTER_STACK_8_11 }}
         GH_TOKEN: ${{ github.token }}
         DOCKER_BUILDKIT: 1
+        STEFAN_ENV: fromGHA
 
