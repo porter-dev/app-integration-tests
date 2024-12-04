@@ -1,0 +1,40 @@
+"on":
+  push:
+    branches:
+    - porter-stack-stefan-testcachemultistep-9570a955
+name: Deploy to stefan-testcachemultistep
+jobs:
+  porter-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Set Github tag
+      id: vars
+      run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+    - name: Set Github tag log
+      id: vars2
+      run: echo "sha_long=$(git log -1 --format=%H)" >> $GITHUB_OUTPUT
+    - name: Setup porter
+      uses: porter-dev/setup-porter@v0.1.0
+      with:
+        tagged_release: v0.0.1
+    - name: Deploy stack
+      timeout-minutes: 30
+      run: |
+        porter version
+        echo "stefan" $OSTYPE; arch; uname -a
+        porter apply
+      env:
+        PORTER_CLUSTER: "11"
+        PORTER_DEPLOYMENT_TARGET_ID: b4d65cbc-45ec-43e1-9e44-d58cb5de3352
+        PORTER_HOST: https://dashboard.internal-tools.porter.run
+        PORTER_PR_NUMBER: ${{ github.event.number }}
+        PORTER_PROJECT: "8"
+        PORTER_REPO_NAME: ${{ github.event.repository.name }}
+        PORTER_APP_NAME: stefantest-graviton
+        PORTER_TAG: ${{ steps.vars2.outputs.sha_long }}
+        PORTER_TOKEN: ${{ secrets.PORTER_STACK_8_11 }}
+        GH_TOKEN: ${{ github.token }}
+        DOCKER_BUILDKIT: 1
+

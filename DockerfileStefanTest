@@ -1,0 +1,21 @@
+FROM golang:1.20.1 as installer
+WORKDIR /porter
+ARG STEFAN_ENV=dockerdefault
+ENV SECOND_VAR ${STEFAN_ENV}
+ENV THIRD_VAR $STEFAN_ENV
+
+RUN echo "envs2" $STEFAN_ENV $SECOND_VAR 
+RUN echo "envs3" $STEFAN_ENV $THIRD_VAR
+
+
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
+RUN go install github.com/go-delve/delve/cmd/dlv@latest
+RUN chmod +x /go/bin/dlv
+
+
+
+FROM debian:bullseye-slim as runner
+WORKDIR /porter
+RUN apt-get update && apt-get install -y --no-install-recommends sqlite3 curl
+COPY --from=installer /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+RUN curl google.com
